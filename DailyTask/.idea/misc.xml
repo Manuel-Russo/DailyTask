@@ -10,8 +10,32 @@
         <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/activity_impostazioni.xml" value="0.371875" />
         <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
         <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/activity_navigation_drawer.xml" value="0.371875" />
         <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/activity_orario_scuola.xml" value="0.27906976744186046" />
+        <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/app_bar_navigation_drawer.xml" value="0.371875" />
+        <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/content_navigation_drawer.xml" value="0.371875" />
+        <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/fragment_gallery.xml" value="0.371875" />
+        <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/fragment_home.xml" value="0.371875" />
         <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/fragment_second.xml" value="0.371875" />
+        <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/fragment_slideshow.xml" value="0.371875" />
+        <entry key="..\:/AndroidStudio/DailyTask/app/src/main/res/layout/nav_header_navigation_drawer.xml" value="0.371875" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2165" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2165" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/drawable/ic_menu_camera.xml" value="0.2165" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.2165" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.2165" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/drawable/ic_propic.xml" value="0.2165" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/drawable/side_nav_bar.xml" value="0.2165" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/activity_impostazioni.xml" value="0.209375" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/activity_navigation_drawer.xml" value="0.209375" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/app_bar_navigation_drawer.xml" value="0.209375" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/content_navigation_drawer.xml" value="0.1953125" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/fragment_gallery.xml" value="0.209375" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/fragment_home.xml" value="0.209375" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/fragment_slideshow.xml" value="0.209375" />
+        <entry key="..\:/Users/corbe/Desktop/Manuel/ANDROID/DailyTask/app/src/main/res/layout/nav_header_navigation_drawer.xml" value="0.209375" />
       </map>
     </option>
   </component>

@@ -1,6 +1,7 @@
 package com.example.dailytask2;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,31 +10,56 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class AggiungiEventoActivity extends AppCompatActivity {
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch switchNotifica;
+    @SuppressLint("SetTextI18n")
+    boolean bool;
+    final Calendar myCalendar= Calendar.getInstance();
+    EditText dateText;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aggiungi_evento);
         EditText editText = findViewById(R.id.editNome);
-        EditText dateText = findViewById(R.id.editTextDate);
-        switchNotifica = (Switch) findViewById(R.id.switchNotifica);
+        dateText = findViewById(R.id.editTextDate);
+        DatePickerDialog.OnDateSetListener date = (view, year, month, day) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH,month);
+            myCalendar.set(Calendar.DAY_OF_MONTH,day);
+            updateLabel();
+        };
+        dateText.setOnClickListener(view -> new DatePickerDialog(AggiungiEventoActivity.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+        switchNotifica = findViewById(R.id.switchNotifica);
         switchNotifica.setOnCheckedChangeListener((compoundButton, b) -> {
-            Toast toast;
             if(b)     {
-                toast = Toast.makeText(AggiungiEventoActivity.this, "on", Toast.LENGTH_SHORT);
+                switchNotifica.setText("ON");
+                bool = true;
             }
             else    {
-                toast = Toast.makeText(AggiungiEventoActivity.this, "off", Toast.LENGTH_SHORT);
+                switchNotifica.setText("OFF");
+                bool = false;
             }
-            toast.show();
         });
         EditText descrizione = findViewById(R.id.editDescrizione);
         Button conferma = findViewById(R.id.conferma);
         conferma.setOnClickListener(view -> {
             finish();
-            Toast.makeText(AggiungiEventoActivity.this,"Elemento Salvato",Toast.LENGTH_SHORT).show();
-            });
+            System.out.println(dateText.getText().toString());
+            String[] data=dateText.getText().toString().split("/");
+            System.out.println(data.length);
+            Utility.scriviDatabase(editText.getText().toString(), data[0], data[1], data[2], bool, descrizione.getText().toString());
+        });
+    }
+
+    private void updateLabel(){
+        String myFormat="dd/MM/yy";
+        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);
+        dateText.setText(dateFormat.format(myCalendar.getTime()));
     }
 }

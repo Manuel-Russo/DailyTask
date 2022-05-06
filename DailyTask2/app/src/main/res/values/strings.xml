@@ -25,4 +25,13 @@
     <string name="powered_by_google">Powered by Google</string>
     <string name="login">LOGIN</string>
     <string name="conferma">CONFERMA</string>
+    <string name="impostazioni_amp_contatti"><![CDATA[IMPOSTAZIONI & CONTATTI]]></string>
+    <string name="notifiche">Notifiche</string>
+    <string name="off">OFF</string>
+    <string name="tema_scuro">Tema scuro</string>
+    <string name="donazioni">DONAZIONI</string>
+    <string name="supportaci">SUPPORTACI!</string>
+    <string name="contatti">CONTATTI:</string>
+    <string name="daily_task_business_gmail_com">daily.task.business@gmail.com</string>
+    <string name="logout">LOGOUT</string>
 </resources>

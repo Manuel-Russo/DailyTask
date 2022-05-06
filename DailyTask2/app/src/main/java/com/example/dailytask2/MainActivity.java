@@ -14,9 +14,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.dailytask2.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    static ArrayList<Evento> eventi = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

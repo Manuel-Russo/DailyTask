@@ -13,7 +13,7 @@
             android:icon="@android:drawable/ic_menu_week"
             android:title="@string/menu_orario" />
         <item
-            android:id="@+id/menu_evento"
+            android:id="@+id/nav_eventi"
             android:icon="@android:drawable/ic_lock_idle_alarm"
             android:title="@string/eventi" />
         <item

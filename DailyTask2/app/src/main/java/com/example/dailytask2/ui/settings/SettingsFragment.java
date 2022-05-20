@@ -1,59 +1,67 @@
 package com.example.dailytask2.ui.settings;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.dailytask2.databinding.FragmentSettingBinding;
+import com.example.dailytask2.LoginActivity;
+import com.example.dailytask2.R;
+import com.firebase.ui.auth.AuthUI;
 
 public class SettingsFragment extends Fragment {
 
-    private FragmentSettingBinding binding;
-
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SettingsViewModel settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
-
-        binding = FragmentSettingBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.setNotifiche;
-        settingsViewModel.getNotifiche().observe(getViewLifecycleOwner(), textView::setText);
-
-        final TextView textView1 = binding.temaScuro;
-        settingsViewModel.getTemaScuro().observe(getViewLifecycleOwner(), textView1::setText);
-
-        final Switch switch1 = binding.notificheSwitch;
-        settingsViewModel.getSwitchNotifiche().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)     {
-                    switch1.setText("ON");
-                }
-                else    {
-                    switch1.setText("OFF");
-                }
+        View layoutf = inflater.inflate(R.layout.fragment_setting,container,false);
+        Switch switch1 = (Switch) layoutf.findViewById(R.id.notificheSwitch);
+        switch1.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b)     {
+                switch1.setText("ON");
+            }
+            else    {
+                switch1.setText("OFF");
             }
         });
 
+        Switch switch2 = (Switch) layoutf.findViewById(R.id.temaSwitch);
+        switch2.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b)     {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                switch2.setText("ON");
 
+            }
+            else    {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                switch2.setText("OFF");
 
-        return root;
-    }
+            }
+        });
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        Button bottone = (Button) layoutf.findViewById(R.id.supportare);
+        bottone.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://paypal.me/ManuRusso04");
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        });
+
+        Button logout = (Button) layoutf.findViewById(R.id.logout);
+        logout.setOnClickListener(view -> new AlertDialog.Builder(SettingsFragment.this.requireContext()).setMessage("Sei sicuro di voler uscire?")
+                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> AuthUI.getInstance()
+                        .signOut(SettingsFragment.this.requireContext()).addOnCompleteListener(task -> {
+                            Intent intent= new Intent(SettingsFragment.this.requireContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }))
+                .setNegativeButton("Annulla", (dialog, which) -> dialog.dismiss()).setIcon(android.R.drawable.ic_dialog_alert).show());
+        return layoutf;
     }
 }

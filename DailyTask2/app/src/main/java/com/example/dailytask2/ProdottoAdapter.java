@@ -1,7 +1,6 @@
 package com.example.dailytask2;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,9 @@ import java.util.ArrayList;
 
 public class ProdottoAdapter extends BaseAdapter    {
     ArrayList<Evento> lista;
-    Context contesto;
 
-    public ProdottoAdapter(ArrayList<Evento> lista, Context contesto) {
+    public ProdottoAdapter(ArrayList<Evento> lista) {
         this.lista = lista;
-        this.contesto = contesto;
     }
 
     @Override
@@ -39,15 +36,14 @@ public class ProdottoAdapter extends BaseAdapter    {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null)   {
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-            view = inflater.inflate(R.layout.layout_evento, viewGroup, false);
+            view = inflater.inflate(R.layout.adapter_evento, viewGroup, false);
         }
         TextView Data = view.findViewById(R.id.Data);
         TextView Nome = view.findViewById(R.id.Nome);
         TextView Descrizione = view.findViewById(R.id.Descrizione);
-        Evento prodotto = lista.get(i);
-        Nome.setText(prodotto.nome);
-        Data.setText(prodotto.giorno+"/"+prodotto.mese+"/"+ prodotto.anno);
-        Descrizione.setText(prodotto.descrizione);
+        Nome.setText(lista.get(i).nome);
+        Data.setText(lista.get(i).giorno+"/"+lista.get(i).mese+"/"+ lista.get(i).anno);
+        Descrizione.setText(lista.get(i).descrizione);
         return view;
     }
 }

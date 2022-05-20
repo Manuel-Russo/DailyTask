@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,11 +49,11 @@ public class AggiungiEventoActivity extends AppCompatActivity {
         Button conferma = findViewById(R.id.conferma);
         conferma.setOnClickListener(view -> {
             finish();
-            System.out.println(dateText.getText().toString());
             String[] data=dateText.getText().toString().split("/");
-            System.out.println(data.length);
             Utility.scriviDatabase(editText.getText().toString(), data[0], data[1], data[2], bool, descrizione.getText().toString());
         });
+        Button indietro = findViewById(R.id.indietro);
+        indietro.setOnClickListener(view -> finish());
     }
 
     private void updateLabel(){

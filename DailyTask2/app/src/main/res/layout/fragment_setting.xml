@@ -37,7 +37,7 @@
                 android:layout_width="312dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/notifiche" />
+                android:text="Notifiche (N.A.)" />
 
             <Switch
                 android:id="@+id/notificheSwitch"
@@ -59,7 +59,7 @@
                 android:layout_width="312dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/tema_scuro" />
+                android:text="Tema Scuro (Beta)" />
 
             <Switch
                 android:id="@+id/temaSwitch"

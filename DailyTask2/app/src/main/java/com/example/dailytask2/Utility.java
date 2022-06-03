@@ -59,7 +59,6 @@ public class Utility    {
         mDatabase.orderByChild("data").equalTo(data).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println("ftg"+snapshot.getValue());
                 if (snapshot.exists())  {
                     HashMap<String, HashMap<String, Object>> hashMapHashMap = (HashMap<String, HashMap<String, Object>>) Objects.requireNonNull(snapshot.getValue());
                     for (Map.Entry<String, HashMap<String, Object>> stringHashMapEntry : hashMapHashMap.entrySet()) {

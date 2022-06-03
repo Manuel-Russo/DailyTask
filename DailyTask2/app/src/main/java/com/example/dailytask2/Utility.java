@@ -1,5 +1,6 @@
 package com.example.dailytask2;
 
+import android.content.DialogInterface;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class Utility    {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                Log.d("xxxx","Evento rimosso");
+                Log.d("xyxy","Evento rimosso");
             }
 
             @Override
@@ -51,48 +53,51 @@ public class Utility    {
             }
         });
     }
-    public static void scaricaEvento(int anno, int mese, int giorno)   {            //By Paola <3
+
+    public static void scaricaEvento(String data)   {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("/evento/");
-        mDatabase.orderByChild("anno").equalTo(anno).addValueEventListener(new ValueEventListener() {
+        mDatabase.orderByChild("data").equalTo(data).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                mDatabase.orderByChild("mese").equalTo(mese).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        mDatabase.orderByChild("giorno").equalTo(giorno).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                HashMap<String, HashMap<String, Object>> hashMapHashMap = (HashMap<String, HashMap<String, Object>>) Objects.requireNonNull(snapshot.getValue());
-                                for (Map.Entry<String, HashMap<String, Object>> stringHashMapEntry : hashMapHashMap.entrySet()) {
-                                    HashMap<String, Object> hashMap = stringHashMapEntry.getValue();
-                                    System.out.println(hashMap);
-                                    EventiFragment.eventiGiornalieri.add(new Evento(String.valueOf(hashMap.get("nome")), Objects.requireNonNull(Long.getLong(String.valueOf(hashMap.get("giorno")))), Objects.requireNonNull(Long.getLong(String.valueOf(hashMap.get("mese")))), Objects.requireNonNull(Long.getLong(String.valueOf(hashMap.get("anno")))), Boolean.getBoolean(String.valueOf(hashMap.get("notifica"))), String.valueOf(hashMap.get("descrizione"))));
-                                }
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
+                System.out.println("ftg"+snapshot.getValue());
+                if (snapshot.exists())  {
+                    HashMap<String, HashMap<String, Object>> hashMapHashMap = (HashMap<String, HashMap<String, Object>>) Objects.requireNonNull(snapshot.getValue());
+                    for (Map.Entry<String, HashMap<String, Object>> stringHashMapEntry : hashMapHashMap.entrySet()) {
+                        HashMap<String, Object> hashMap = stringHashMapEntry.getValue();
+                        EventiFragment.eventiGiornalieri.add(new Evento(String.valueOf(hashMap.get("nome")), String.valueOf(hashMap.get("data")) ,Boolean.getBoolean(String.valueOf(hashMap.get("notifica"))), String.valueOf(hashMap.get("descrizione"))));
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
-    public static void scriviDatabase(String nome, String giorno, String mese, String anno, boolean notifica, String descrizione)     {
+    public static void scriviDatabase(String nome, String data, boolean notifica, String descrizione)     {
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Evento p = new Evento(nome, Integer.parseInt(giorno), Integer.parseInt(mese), Integer.parseInt(anno), notifica, descrizione);
+        Evento p = new Evento(nome, data, notifica, descrizione);
         mDatabase.child("/evento").push().setValue(p.serializzaSuFirebase());
+    }
+
+    public static void rimuoviDatabase(int i)    {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        Query queryEliminazione = ref.child("evento").orderByChild("nome").equalTo(EventiFragment.eventi.get(i).nome);
+
+        queryEliminazione.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot delateSnap: dataSnapshot.getChildren()) {
+                    delateSnap.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("xxxx", "onCancelled", databaseError.toException());
+            }
+        });
     }
 }

@@ -22,6 +22,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="39dp"
+            android:gravity="fill_vertical"
             android:text="@string/impostazioni_amp_contatti"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -69,6 +70,10 @@
                 android:text="@string/off"
                 tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="332dp" />
 
         <TableRow
             android:layout_width="wrap_content"
@@ -119,6 +124,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:text="@string/contatti" />
+
+                <TextView
+                    android:id="@+id/textView64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="@string/daily_task_business_gmail_com"
+                    android:textAlignment="textEnd" />
 
             </LinearLayout>
 

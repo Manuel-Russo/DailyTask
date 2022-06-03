@@ -49,15 +49,15 @@ public class AggiungiEventoActivity extends AppCompatActivity {
         Button conferma = findViewById(R.id.conferma);
         conferma.setOnClickListener(view -> {
             finish();
-            String[] data=dateText.getText().toString().split("/");
-            Utility.scriviDatabase(editText.getText().toString(), data[0], data[1], data[2], bool, descrizione.getText().toString());
+            System.out.println(dateText.getText().toString());
+            Utility.scriviDatabase(editText.getText().toString(), dateText.getText().toString(), bool, descrizione.getText().toString());
         });
         Button indietro = findViewById(R.id.indietro);
         indietro.setOnClickListener(view -> finish());
     }
 
     private void updateLabel(){
-        String myFormat="dd/MM/yy";
+        String myFormat="dd-MM-yyyy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.ITALY);
         dateText.setText(dateFormat.format(myCalendar.getTime()));
     }

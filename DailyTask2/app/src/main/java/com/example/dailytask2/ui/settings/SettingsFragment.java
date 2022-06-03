@@ -35,16 +35,20 @@ public class SettingsFragment extends Fragment {
         });
 
         Switch switch2 = (Switch) layoutf.findViewById(R.id.temaSwitch);
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)    {
+            switch2.setChecked(true);
+        }
+        else    {
+            switch1.setChecked(false);
+        }
         switch2.setOnCheckedChangeListener((compoundButton, b) -> {
             if(b)     {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 switch2.setText("ON");
-
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
             else    {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 switch2.setText("OFF");
-
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         });
 

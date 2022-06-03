@@ -24,14 +24,13 @@ import java.time.LocalDate;
 public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View layoutH = inflater.inflate(R.layout.fragment_home,container,false);
-
+        MainActivity.adapterHome = new ProdottoAdapter(EventiFragment.eventiGiornalieri);
+        ListView lista = layoutH.findViewById(R.id.listaHome);
+        lista.setAdapter(MainActivity.adapterHome);
 
         CalendarView calendarView = layoutH.findViewById(R.id.calendario);
         calendarView.setOnDateChangeListener((calendarView1, i, i1, i2) -> {
-            ListView lista = layoutH.findViewById(R.id.listaHome);
-            MainActivity.adapterHome = new ProdottoAdapter(EventiFragment.eventiGiornalieri);
-            lista.setAdapter(MainActivity.adapterHome);
-            MainActivity.adapterHome.notifyDataSetChanged();
+
             i1++;
             String stringai2 = ""; //giorno
             String stringai1 = ""; //mese
@@ -48,11 +47,15 @@ public class HomeFragment extends Fragment {
                 stringai1 = "" + i1;
             }
             String data = stringai2 + "-" + stringai1+ "-" + i;
-            Log.d("data",data);
             Utility.scaricaEvento(data);
+
+            EventiFragment.eventiGiornalieri.clear();
+
             MainActivity.adapterHome.notifyDataSetChanged();
+
             System.out.println("eventoGiornalieriInLista   " + EventiFragment.eventiGiornalieri.toString());
         });
+
         return layoutH;
     }
 }

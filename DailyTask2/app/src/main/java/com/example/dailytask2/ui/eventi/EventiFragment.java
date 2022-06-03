@@ -32,10 +32,10 @@ public class EventiFragment extends Fragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Vuoi eliminare questo evento?");
             builder.setPositiveButton("Si", (dialog, id) -> {
-                        Utility.rimuoviDatabase(i);
-                        eventi.remove(i);
-                        MainActivity.adapter.notifyDataSetChanged();
-                    })
+                Utility.rimuoviDatabase(i);
+                eventi.remove(i);
+                MainActivity.adapter.notifyDataSetChanged();
+            })
                     .setNegativeButton("No", (dialog, id) -> dialog.cancel());
             builder.create().show();
             return true;

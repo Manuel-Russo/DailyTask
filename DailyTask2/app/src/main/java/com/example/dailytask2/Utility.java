@@ -64,6 +64,7 @@ public class Utility    {
                     for (Map.Entry<String, HashMap<String, Object>> stringHashMapEntry : hashMapHashMap.entrySet()) {
                         HashMap<String, Object> hashMap = stringHashMapEntry.getValue();
                         EventiFragment.eventiGiornalieri.add(new Evento(String.valueOf(hashMap.get("nome")), String.valueOf(hashMap.get("data")) ,Boolean.getBoolean(String.valueOf(hashMap.get("notifica"))), String.valueOf(hashMap.get("descrizione"))));
+                        MainActivity.adapterHome.notifyDataSetChanged();
                     }
                 }
             }
